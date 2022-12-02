@@ -36,6 +36,7 @@ class Main(QDialog):
         button_root = QPushButton("√")
 
         ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
+        #추가한 연산 버튼 오퍼레이션 연결
         button_plus.clicked.connect(lambda state, operation = "+": self.button_operation_clicked(operation))
         button_minus.clicked.connect(lambda state, operation = "-": self.button_operation_clicked(operation))
         button_product.clicked.connect(lambda state, operation = "*": self.button_operation_clicked(operation))
@@ -46,6 +47,7 @@ class Main(QDialog):
         button_reverse.clicked.connect(lambda state, operation = "1/x": self.button_operation_clicked(operation))
 
         ### 사칙연산 버튼을 layout_button 레이아웃에 추가
+        # 좌표설정
         layout_button.addWidget(button_plus, 4, 3)
         layout_button.addWidget(button_minus, 3, 3)
         layout_button.addWidget(button_product, 2, 3)
@@ -69,6 +71,7 @@ class Main(QDialog):
 
 
         ### =, clear, backspace 버튼을 layout_button 레이아웃에 추가
+        # 좌표계 설정 하였음
         layout_button.addWidget(button_equal, 5, 3)
         layout_button.addWidget(button_ce, 0, 1)
         layout_button.addWidget(button_clear, 0, 2)
