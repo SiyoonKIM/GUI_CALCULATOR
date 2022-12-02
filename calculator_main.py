@@ -5,6 +5,7 @@ class Main(QDialog):
     def __init__(self):
         super().__init__()
         self.init_ui()
+        self.result
 
     def init_ui(self):
         main_layout = QVBoxLayout()
@@ -107,6 +108,7 @@ class Main(QDialog):
     #################
     ### functions ###
     #################
+
     def number_button_clicked(self, num):
         solution = self.solution.text()
         solution += str(num)
@@ -117,10 +119,20 @@ class Main(QDialog):
         solution += operation
         self.solution.setText(solution)
 
+    # = 버튼을 클릭하였을 때 연산자에 맞게 계산이 실행됨
     def button_equal_clicked(self):
-        solution = self.solution.text()
-        solution = eval(solution)
-        self.solution.setText(str(solution))
+        temp_number = (float(self.input_output.text()))
+        if self.operation == '+':
+            solution = self.number + temp_number
+        elif self.operation == '-':
+            solution = self.number - temp_number
+        elif self.operation == '*':
+            solution = self.number * temp_number
+        elif self.operation == '/':
+            solution = self.number / temp_number
+        elif self.operation == '%':
+            solution = self.number % temp_number
+        self.input_output.setText(str(solution))
 
     def button_clear_clicked(self):
         self.solution.setText("")
