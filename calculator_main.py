@@ -15,10 +15,14 @@ class Main(QDialog):
         layout_equation_solution = QFormLayout()
 
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
+        # label_equation = QLabel("Equation: ")
+        # self.equation = QLineEdit("")
+
         label_solution = QLabel("Calculator: ")
         self.solution = QLineEdit("")
 
         ### layout_equation_solution 레이아웃에 수식, 답 위젯을 추가
+        # layout_equation_solution.addRow(label_equation, self.equation)
         layout_equation_solution.addRow(label_solution, self.solution)
 
         ### 사칙연산 버튼 생성
