@@ -43,9 +43,10 @@ class Main(QDialog):
         button_product.clicked.connect(lambda state, operation = "*": self.button_operation_clicked(operation))
         button_division.clicked.connect(lambda state, operation = "/": self.button_operation_clicked(operation))
         button_remain.clicked.connect(lambda state, operation = "%": self.button_operation_clicked(operation))
-        button_root.clicked.connect(lambda state, operation = "√": self.button_operation_clicked(operation))
-        button_square.clicked.connect(lambda state, operation = "x²": self.button_operation_clicked(operation))
-        button_reverse.clicked.connect(lambda state, operation = "1/x": self.button_operation_clicked(operation))
+
+        button_root.clicked.connect(lambda state, operation = "root": self.button_operation_direct(operation))
+        button_square.clicked.connect(lambda state, operation = "square": self.button_operation_direct(operation))
+        button_reverse.clicked.connect(lambda state, operation = "reverse": self.button_operation_direct(operation))
 
         ### 사칙연산 버튼을 layout_button 레이아웃에 추가
         # 좌표설정
@@ -111,20 +112,43 @@ class Main(QDialog):
     #################
     ### functions ###
     #################
+<<<<<<< HEAD
 
+=======
+    # 숫자 버튼을 클릭하였을 때 실행되는 함수
+>>>>>>> 신규-연산-기능-추가
     def number_button_clicked(self, num):
-        solution = self.solution.text()
-        solution += str(num)
-        self.solution.setText(solution)
+        equation = self.solution.text()
+        equation += str(num)
+        self.solution.setText(equation)
 
+    # 피연산자가 2개인 연산의 경우 실행되는 함수 (+, -, /, % 등등..)
     def button_operation_clicked(self, operation):
-        solution = self.solution.text()
-        solution += operation
-        self.solution.setText(solution)
+        self.number = (float(self.solution.text()))
+        self.operation = operation
+        self.solution.setText("")
 
+<<<<<<< HEAD
     # = 버튼을 클릭하였을 때 연산자에 맞게 계산이 실행됨
     def button_equal_clicked(self):
         temp_number = (float(self.input_output.text()))
+=======
+    # 피연산자가 1개인 연산의 경우 실행되는 함수
+    def button_operation_direct(self, operation):
+        self.number = (float(self.solution.text()))
+        self.operation = operation
+        if self.operation == 'root':
+            soultion = self.number ** (1/2)
+        elif self.operation == 'square':
+            soultion = self.number ** 2
+        elif self.operation == 'reverse':
+            soultion = self.number ** -1
+        self.solution.setText(str(soultion))
+
+    # = 버튼을 클릭하였을 때 연산자에 맞게 계산이 실행됨
+    def button_equal_clicked(self):
+        temp_number = (float(self.solution.text()))
+>>>>>>> 신규-연산-기능-추가
         if self.operation == '+':
             solution = self.number + temp_number
         elif self.operation == '-':
@@ -135,16 +159,21 @@ class Main(QDialog):
             solution = self.number / temp_number
         elif self.operation == '%':
             solution = self.number % temp_number
+<<<<<<< HEAD
         self.input_output.setText(str(solution))
+=======
+        self.solution.setText(str(solution))
+>>>>>>> 신규-연산-기능-추가
 
+    # C, CE 버튼 클릭 시 실행되는 함수
     def button_clear_clicked(self):
         self.solution.setText("")
-        self.solution.setText("")
 
+    # BackSpace 버튼 클릭 시 실행되는 함수
     def button_backspace_clicked(self):
-        solution = self.solution.text()
-        solution = solution[:-1]
-        self.solution.setText(solution)
+        equation = self.solution.text()
+        equation = equation[:-1]
+        self.solution.setText(equation)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
